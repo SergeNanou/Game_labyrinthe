@@ -53,8 +53,8 @@ class Support:
 class Element:	
 	""""Create a element clas for kill a garden """
 
-	def __init__(self,opening,image): #constructor of Element class
-		self.opening = opening	
+	def __init__(self,home,image): #constructor of Element class
+		self.home = home
 		self.image = image
 		self.x = 0
 		self.y = 0
@@ -63,7 +63,7 @@ class Element:
 		self.possible = True
 		
 		
-	def generate(self,image,opening):
+	def generate(self,image,home):
 		""""Create a methode  to generate this element """
 		
 		while self.possible:
@@ -71,7 +71,7 @@ class Element:
 			
 			self.case_x = random.randint(0,14) # generate randomly a number
 			self.case_y = random.randint(0,14) #generate randomly a number
-			position_create = self.opening.structure[self.case_x][self.case_y] #value to know if we have a wall or no
+			position_create = self.home.structure[self.case_x][self.case_y] #value to know if we have a wall or no
 		
 			if position_create == '0' :
 				self.y = self.case_y * 30  # We define/accept the position for the object
