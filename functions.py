@@ -145,8 +145,8 @@ class Element:
 		while self.possible:
 
 			
-			self.case_x = random.randint(0,9) # generate randomly a number
-			self.case_y = random.randint(0,9) #generate randomly a number
+			self.case_x = random.randint(0,14) # generate randomly a number
+			self.case_y = random.randint(0,14) #generate randomly a number
 			position_create = self.home.structure[self.case_y][self.case_x] #value to know if we have a wall or no
 		
 			if position_create == 1:

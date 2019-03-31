@@ -25,6 +25,7 @@ seringuePNG = pygame.image.load('seingue_2.png').convert()
 aiguillePNG = pygame.image.load('aiguille.png').convert()
 tubePNG = pygame.image.load('tube_plastique.png').convert()
 image_acceilPNG =  pygame.image.load('acceuil_3.png').convert()
+gainPNG = pygame.image.load('Gain.png').convert()
 #goal = pygame.image.load('Gardien.png').convert()
 #image
 
@@ -32,7 +33,7 @@ image_acceilPNG =  pygame.image.load('acceuil_3.png').convert()
 
 home = Support()
 home.create()
-print(home.structure)
+
 tail_sprite = 30
 #we walk through each line of a structure
 
@@ -43,9 +44,10 @@ etherTest = True
 seringueTest = True
 aiguilleTest = True 
 tubeTest = True
-cpt = 0
+gainTest = True
 loser = True
 win = True
+cpt = 0
 ##Instance and generate the elements that permit to Mac Gyver to kill the garden of exit
 
 ether = Element(home, etherPNG)
@@ -147,12 +149,12 @@ while continuer:
 
 	# Mac Gyver take any elements
 	if etherTest==False and tubeTest == False and aiguilleTest == False:
-		cpt +=1
+		cpt = 1
 	if cpt == 1 :
 
 		while seringueTest :
 
-			opening.blit((pygame.transform.scale(seringuePNG, (300, 300))), (0, 0))
+			opening.blit((pygame.transform.scale(seringuePNG, (450, 450))), (0, 0))
 			for event in pygame.event.get(): #function to catch a user action	
 
 				if event.type == KEYDOWN: # catch a keyboard action
@@ -162,9 +164,8 @@ while continuer:
 						seringueTest = False
 
 			pygame.display.flip()
-	if cpt == 0 and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
 
-		
+	if cpt == 0  and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
 
 		while loser :
 			rectScreen = opening.get_rect()
@@ -183,6 +184,23 @@ while continuer:
 						if event.key == K_ESCAPE:
 							loser = False
 							continuer = False
+			pygame.display.flip()
+	
+
+	if cpt == 1 and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
+
+		while gainTest :
+			# rectScreen = opening.get_rect()
+			# opening.fill(pygame.Color("#FF0000"))
+			opening.blit((pygame.transform.scale(gainPNG, (450, 450))), (0, 0))
+			for event in pygame.event.get(): #function to catch a user action	
+
+				if event.type == KEYDOWN: # catch a keyboard action
+						                  		
+					#Keys movement of Mac Gyver
+					if event.key == K_ESCAPE:
+						gainTest = False
+						continuer = False
 			pygame.display.flip()
 
 	pygame.display.flip()
