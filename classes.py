@@ -11,7 +11,7 @@ class Game_environnement:
     """"Create a game environnement """
     def __init__(self):
         self.structure = 0
-
+        self.pile = []
     def create(self):
         """"Create a maze with a exhaustive exploration """
 
@@ -43,8 +43,8 @@ class Game_environnement:
         # we choice in random one cell in dejavu matrix
         # for begining the union of maze cell
         Cell_rand = ((random.randrange(taille_Max)), (random.randrange(taille_Max)))
-        lastCell = [(Cell_rand)]
-
+        lastCell = [(1,1)]
+        s = []
         # we make a while loop to visit all boxes of maze for the union.
         while lastCell != []:
             (x, y) = lastCell[-1]  # we take the last element of the pile
@@ -74,11 +74,17 @@ class Game_environnement:
                 lastCell.append((x, y))
             else:
                 lastCell.pop()
+            print(lastCell)
+            if lastCell != [] and lastCell[len(lastCell)-1] == (6,6)  :
+                self.pile = self.pile+lastCell
+                
+                #print(s)
         # start maze position
         laby[1][1] = 2
         # end maze position
         laby[2*taille_Max-1][2*taille_Max-1] = 3
         self.structure = laby
+
 
     def poster(self, opening):
 
@@ -122,11 +128,13 @@ class Element:
             self.case_y = random.randint(0, 14)  # generate randomly a number
             # value to know if we have a wall or no
             position_create = self.home.structure[self.case_y][self.case_x]
-            if position_create == 1:
-                # We define/accept the position for the object
-                self.y = self.case_y * 30
-                self.x = self.case_x * 30
-                self.possible = False  # We construct the element once
+            #if self.case_x % 2 != 0 or self.case_y % 2 != 0:
+            if position_create == 1 and self.case_x % 2 != 0 and self.case_y % 2 != 0:
+                    if ((self.case_y-1)//2, (self.case_x-1)//2) in self.home.pile:
+                    # We define/accept the position for the object
+                       self.y = self.case_y * 30
+                       self.x = self.case_x * 30
+                       self.possible = False  # We construct the element once
 
 
 class Maestro:
@@ -134,10 +142,10 @@ class Maestro:
 
     def __init__(self, home):  # constructor class
 
-        self.case_x = 1
-        self.case_y = 1
-        self.x = 30
-        self.y = 30
+        self.case_x = 3
+        self.case_y = 3
+        self.x = 90
+        self.y = 90
         self.home = home
         self.direct = pygame.transform.scale((pygame.image.load('Images\MacGyver.png').convert()), (30, 30))
 

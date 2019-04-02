@@ -17,6 +17,11 @@ opening = pygame.display.set_mode((450, 450))
 pygame.display.set_caption("Mac Gyver release !")
 title_image = pygame.image.load("Images\MacGyver.png").convert_alpha()
 pygame.display.set_icon(title_image)
+# Game soon
+son_intro = pygame.mixer.Sound("musics\\346.wav")
+son_play = pygame.mixer.Sound("musics\\627.wav")
+son_kill = pygame.mixer.Sound("musics\\620.wav")
+son_win = pygame.mixer.Sound("musics\\646.wav")
 
 # background image
 background = pygame.image.load("Images\ciel-bleu.jpg").convert()
@@ -27,13 +32,14 @@ seringuePNG = pygame.image.load('Images\seingue_2.png').convert()
 aiguillePNG = pygame.image.load("Images\\aiguille.png").convert()
 tubePNG = pygame.image.load('Images\\tube_plastique.png').convert()
 image_acceilPNG = pygame.image.load('Images\\acceuil_3.png').convert()
-gainPNG = pygame.image.load('Images\Gain.png').convert()
-
-
+winPNG = pygame.image.load('Images\Gain.png').convert()
+exitPNG = pygame.image.load('Images\\fond.jpg').convert()
+riskPNG = pygame.image.load('Images\\risk.png').convert()
 # Instance of game_envirronement
 
 home = Game_environnement()
 home.create()
+print(home.pile)
 tail_sprite = 30
 # Instance test variables
 acceuilTest = True
@@ -46,6 +52,7 @@ loser = True
 win = True
 cpt = 0
 continuer = True
+riskTest = True
 # Instance and generate the elements that permit to Mac Gyver
 # to kill the garden of exit
 
@@ -58,10 +65,13 @@ aiguille.generate(aiguillePNG, opening)
 
 # Mac Gyver creation
 Mac_Gyver = Maestro(home)
+
 # BOUCLE INFINIE
 while continuer:
+    # Limitation de vitesse de la boucle
+    pygame.time.Clock().tick(30)
+    son_play.play()
     while acceuilTest:
-
             opening.blit((pygame.transform.scale(image_acceilPNG, (450, 450))), (0, 0))
             # function to catch a user action
             for event in pygame.event.get():
@@ -89,7 +99,7 @@ while continuer:
                     continuer = False
 # Construct a maze
     opening.blit((pygame.transform.scale(background, (450, 450))), (0, 0))
-
+    
     # opening.blit(pygame.transform.scale(goal,(30, 30)), (420,420))
     home.poster(opening)
     # post Mac gyver and his moving
@@ -133,6 +143,7 @@ while continuer:
     if cpt == 0 and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
         # we cut game session if a player losing
         while loser:
+            son_kill.play()
             rectScreen = opening.get_rect()
             # police = pygame.font.Font("led.ttf",72)
             police = pygame.font.Font(None, 30)
@@ -151,13 +162,23 @@ while continuer:
     if cpt == 1 and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
         # we cut a game session if a player winning
         while gainTest:
-            opening.blit((pygame.transform.scale(gainPNG, (450, 450))), (0, 0))
+            son_win.play()
+            opening.blit((pygame.transform.scale(winPNG, (450, 450))), (0, 0))
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         gainTest = False
                         continuer = False
             pygame.display.flip()
+
+    if riskTest:
+        # we post a risk image around the garden
+        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (360, 390))
+        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (390, 360))
+        if (Mac_Gyver.x, Mac_Gyver.y) == (360, 390) or (Mac_Gyver.x, Mac_Gyver.y) == (390, 360) :
+            riskTest = False
+        #pygame.display.flip()
+    opening.blit((pygame.transform.scale(exitPNG, (30, 30))), (420, 420))
     pygame.display.flip()
 
 
