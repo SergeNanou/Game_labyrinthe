@@ -15,19 +15,19 @@ opening = pygame.display.set_mode((450, 450))
 # Title and icone of opening
 
 pygame.display.set_caption("Mac Gyver release !")
-title_image = pygame.image.load("MacGyver.png").convert_alpha()
+title_image = pygame.image.load("Images\MacGyver.png").convert_alpha()
 pygame.display.set_icon(title_image)
 
 # background image
-background = pygame.image.load("ciel-bleu.jpg").convert()
+background = pygame.image.load("Images\ciel-bleu.jpg").convert()
 
 # Mac Gyver element import
-etherPNG = pygame.image.load('ether.png').convert()
-seringuePNG = pygame.image.load('seingue_2.png').convert()
-aiguillePNG = pygame.image.load('aiguille.png').convert()
-tubePNG = pygame.image.load('tube_plastique.png').convert()
-image_acceilPNG = pygame.image.load('acceuil_3.png').convert()
-gainPNG = pygame.image.load('Gain.png').convert()
+etherPNG = pygame.image.load('Images\ether.png').convert()
+seringuePNG = pygame.image.load('Images\seingue_2.png').convert()
+aiguillePNG = pygame.image.load("Images\\aiguille.png").convert()
+tubePNG = pygame.image.load('Images\\tube_plastique.png').convert()
+image_acceilPNG = pygame.image.load('Images\\acceuil_3.png').convert()
+gainPNG = pygame.image.load('Images\Gain.png').convert()
 
 
 # Instance of game_envirronement

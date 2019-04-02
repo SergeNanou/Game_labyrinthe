@@ -84,8 +84,8 @@ class Game_environnement:
 
         """"function to post the struct"""
 
-        wall = pygame.image.load('floor-tiles-20x20.png').convert()  # import a Wall Image
-        goal = pygame.image.load('Gardien.png').convert()  # import Garden goal Image
+        wall = pygame.image.load('Images\\floor-tiles-20x20.png').convert()  # import a Wall Image
+        goal = pygame.image.load('Images\\Gardien.png').convert()  # import Garden goal Image
         tail_sprite = 30
         # we walk through each line of a structure
         num_row = 0
@@ -139,7 +139,7 @@ class Maestro:
         self.x = 30
         self.y = 30
         self.home = home
-        self.direct = pygame.transform.scale((pygame.image.load('MacGyver.png').convert()), (30, 30))
+        self.direct = pygame.transform.scale((pygame.image.load('Images\MacGyver.png').convert()), (30, 30))
 
     def move(self, directory):
         """"Create Mac Gyver method to permit Mac Gyver to moving"""
@@ -170,7 +170,7 @@ class Maestro:
                 if self.home.structure[self.case_y-1][self.case_x] != 0:
                     self.case_y -= 1
                     self.y = self.case_y * tail_sprite
-
+        # move to low
         if directory == 'low':
             if self.case_y < (nombre_sprite_cote - 1):
                 if self.home.structure[self.case_y+1][self.case_x] != 0:
