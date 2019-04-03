@@ -27,6 +27,7 @@ son_win = pygame.mixer.Sound("musics\\646.wav")
 background = pygame.image.load("Images\ciel-bleu.jpg").convert()
 
 # Mac Gyver element import
+goalPNG = pygame.image.load('Images\\Gardien.png').convert()
 etherPNG = pygame.image.load('Images\ether.png').convert()
 seringuePNG = pygame.image.load('Images\seingue_2.png').convert()
 aiguillePNG = pygame.image.load("Images\\aiguille.png").convert()
@@ -99,7 +100,7 @@ while continuer:
                     continuer = False
 # Construct a maze
     opening.blit((pygame.transform.scale(background, (450, 450))), (0, 0))
-    
+    opening.blit((pygame.transform.scale(goalPNG, (30, 30))), (420,420))
     # opening.blit(pygame.transform.scale(goal,(30, 30)), (420,420))
     home.poster(opening)
     # post Mac gyver and his moving
@@ -140,7 +141,7 @@ while continuer:
 
             pygame.display.flip()
 
-    if cpt == 0 and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
+    if cpt == 0 and (Mac_Gyver.x, Mac_Gyver.y) == (420, 420):
         # we cut game session if a player losing
         while loser:
             son_kill.play()
@@ -159,7 +160,7 @@ while continuer:
                             loser = False
                             continuer = False
             pygame.display.flip()
-    if cpt == 1 and home.structure[Mac_Gyver.case_y][Mac_Gyver.case_x] == 3:
+    if cpt == 1 and (Mac_Gyver.x, Mac_Gyver.y) == (420, 420):
         # we cut a game session if a player winning
         while gainTest:
             son_win.play()
@@ -173,12 +174,14 @@ while continuer:
 
     if riskTest:
         # we post a risk image around the garden
-        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (360, 390))
-        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (390, 360))
+        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (360, 420))
+        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (390, 420))
+        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (420, 360))
+        opening.blit((pygame.transform.scale(riskPNG, (30, 30))), (420, 390))
         if (Mac_Gyver.x, Mac_Gyver.y) == (360, 390) or (Mac_Gyver.x, Mac_Gyver.y) == (390, 360) :
             riskTest = False
-        #pygame.display.flip()
-    opening.blit((pygame.transform.scale(exitPNG, (30, 30))), (420, 420))
+        # pygame.display.flip()
+    opening.blit((pygame.transform.scale(goalPNG, (30, 30))), (420, 420))
     pygame.display.flip()
 
 

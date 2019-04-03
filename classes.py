@@ -75,14 +75,19 @@ class Game_environnement:
             else:
                 lastCell.pop()
             print(lastCell)
-            if lastCell != [] and lastCell[len(lastCell)-1] == (6,6)  :
+            if lastCell != [] and lastCell[len(lastCell)-1] == (5,5)  :
                 self.pile = self.pile+lastCell
                 
                 #print(s)
         # start maze position
         laby[1][1] = 2
+        laby[12][14] = 1
+        laby[13][14] = 1
+        laby[14][14] = 1
+        laby[14][12] = 1
+        laby[14][13] = 1
         # end maze position
-        laby[2*taille_Max-1][2*taille_Max-1] = 3
+        #laby[2*taille_Max-1][2*taille_Max-1] = 3
         self.structure = laby
 
 
@@ -104,8 +109,8 @@ class Game_environnement:
                 y = num_row * tail_sprite
                 if sprite == 0:  # w = Wall(built Wall)
                     opening.blit(pygame.transform.scale(wall, (30, 30)), (x, y))
-                elif sprite == 3:  # g = goal(freedom)
-                    opening.blit(pygame.transform.scale(goal, (30, 30)), (x, y))
+                #elif sprite == 3:  # g = goal(freedom)
+                    #opening.blit(pygame.transform.scale(goal, (30, 30)), (x, y))
                 num_case += 1
             num_row += 1
 
@@ -124,17 +129,17 @@ class Element:
     def generate(self, image, home):
         """"Create a methode  to generate this element """
         while self.possible:
-            self.case_x = random.randint(0, 14)  # generate randomly a number
-            self.case_y = random.randint(0, 14)  # generate randomly a number
+            self.case_x = random.randint(1, 12)  # generate randomly a number
+            self.case_y = random.randint(1, 12)  # generate randomly a number
             # value to know if we have a wall or no
             position_create = self.home.structure[self.case_y][self.case_x]
             #if self.case_x % 2 != 0 or self.case_y % 2 != 0:
-            if position_create == 1 and self.case_x % 2 != 0 and self.case_y % 2 != 0:
-                    if ((self.case_y-1)//2, (self.case_x-1)//2) in self.home.pile:
+            if position_create == 1 :
+                    #if ((self.case_y-1)//2, (self.case_x-1)//2) in self.home.pile:
                     # We define/accept the position for the object
-                       self.y = self.case_y * 30
-                       self.x = self.case_x * 30
-                       self.possible = False  # We construct the element once
+                    self.y = self.case_y * 30
+                    self.x = self.case_x * 30
+                    self.possible = False  # We construct the element once
 
 
 class Maestro:
