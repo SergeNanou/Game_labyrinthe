@@ -11,7 +11,7 @@ class Game_environnement:
     """"Create a game environnement """
     def __init__(self):
         self.structure = 0
-        self.pile = []
+        
     def create(self):
         """"Create a maze with a exhaustive exploration """
 
@@ -42,9 +42,7 @@ class Game_environnement:
 
         # we choice in random one cell in dejavu matrix
         # for begining the union of maze cell
-        Cell_rand = ((random.randrange(taille_Max)), (random.randrange(taille_Max)))
         lastCell = [(1,1)]
-        s = []
         # we make a while loop to visit all boxes of maze for the union.
         while lastCell != []:
             (x, y) = lastCell[-1]  # we take the last element of the pile
@@ -74,9 +72,6 @@ class Game_environnement:
                 lastCell.append((x, y))
             else:
                 lastCell.pop()
-            print(lastCell)
-            if lastCell != [] and lastCell[len(lastCell)-1] == (5,5)  :
-                self.pile = self.pile+lastCell
                 
                 #print(s)
         # start maze position

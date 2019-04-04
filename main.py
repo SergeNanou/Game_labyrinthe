@@ -40,7 +40,6 @@ riskPNG = pygame.image.load('Images\\risk.png').convert()
 
 home = Game_environnement()
 home.create()
-print(home.pile)
 tail_sprite = 30
 # Instance test variables
 acceuilTest = True
@@ -148,7 +147,7 @@ while continuer:
             rectScreen = opening.get_rect()
             # police = pygame.font.Font("led.ttf",72)
             police = pygame.font.Font(None, 30)
-            texte = police.render("Game Over - ECHAP TO QUIT", True, pygame.Color("#FFFF00"))
+            texte = police.render("Ah MAC GYVER DIED!!! - ECHAP TO QUIT", True, pygame.Color("#FFFF00"))
             rectTexte = texte.get_rect()
             rectTexte.center = rectScreen.center
             opening.fill(pygame.Color("#FF0000"))
