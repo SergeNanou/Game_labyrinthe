@@ -147,7 +147,7 @@ while continuer:
             rectScreen = opening.get_rect()
             # police = pygame.font.Font("led.ttf",72)
             police = pygame.font.Font(None, 30)
-            texte = police.render("Ah MAC GYVER DIED!!! - ECHAP TO QUIT", True, pygame.Color("#FFFF00"))
+            texte = police.render("Ah MAC GYVER DIED !!! - ECHAP TO QUIT", True, pygame.Color("#FFFF00"))
             rectTexte = texte.get_rect()
             rectTexte.center = rectScreen.center
             opening.fill(pygame.Color("#FF0000"))
